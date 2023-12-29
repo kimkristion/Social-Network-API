@@ -1,7 +1,8 @@
 // controllers/userController.js
-const User = require('../models/User');
+const User = require('../models/User'); // Import the User model
 
 const UserController = {
+  // Get all users with populated thoughts and friends
   getAllUsers: async (req, res) => {
     try {
       const users = await User.find().populate('thoughts').populate('friends');
@@ -11,6 +12,7 @@ const UserController = {
     }
   },
 
+  // Get a user by their ID
   getUserById: async (req, res) => {
     const { userId } = req.params;
     try {
@@ -24,6 +26,7 @@ const UserController = {
     }
   },
 
+  // Create a new user
   createUser: async (req, res) => {
     const { username, email, password } = req.body;
     try {
@@ -34,6 +37,7 @@ const UserController = {
     }
   },
 
+  // Update a user by their ID
   updateUser: async (req, res) => {
     const { userId } = req.params;
     const { username, email } = req.body;
@@ -52,6 +56,7 @@ const UserController = {
     }
   },
 
+  // Delete a user by their ID
   deleteUser: async (req, res) => {
     const { userId } = req.params;
     try {
@@ -65,6 +70,7 @@ const UserController = {
     }
   },
   
+  // Add a friend to a user's friends list
   addFriend: async (req, res) => {
     const { userId, friendId } = req.params;
   
@@ -87,6 +93,7 @@ const UserController = {
     }
   },
   
+  // Delete a friend from a user's friends list
   deleteFriend: async (req, res) => {
     const { userId, friendId } = req.params;
   
@@ -106,5 +113,4 @@ const UserController = {
   }
 };
 
-
-module.exports = UserController;
+module.exports = UserController; // Export the UserController module

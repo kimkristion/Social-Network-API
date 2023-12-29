@@ -30,14 +30,12 @@ const ThoughtController = {
     const { thoughtText, username, userId } = req.body;
   
     try {
-      // Check if the user with the provided username exists
       const user = await User.findOne({ username });
       if (!user) {
         return res.status(400).json({ error: "User does not exist. Cannot create the thought." });
       }
   
       const newThought = await Thought.create({ thoughtText, username });
-      // Assuming your User model has a field named thoughts to store thought references
       await User.findByIdAndUpdate(userId, { $push: { thoughts: newThought._id } });
   
       res.status(201).json(newThought);
@@ -146,7 +144,5 @@ const ThoughtController = {
     }
   }
 };
-
-
 
 module.exports = ThoughtController;

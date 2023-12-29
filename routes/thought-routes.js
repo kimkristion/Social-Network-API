@@ -13,9 +13,11 @@ router.route('/:thoughtId')
   .put(ThoughtController.updateThought)
   .delete(ThoughtController.deleteThought);
 
+// /api/thoughts/:thoughtId/reactions
 router.route('/:thoughtId/reactions')
   .post(ThoughtController.createReaction)
 
+// /api/thoughts/:thoughtId/reactions/:reactionId
 router.route('/:thoughtId/reactions/:reactionId')
   .delete(ThoughtController.deleteReaction)
 

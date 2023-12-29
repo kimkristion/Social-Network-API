@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const UserController = require('../controllers/user-controller'); // Corrected file name
+const UserController = require('../controllers/user-controller'); 
 
 // /api/users
 router.route('/')
@@ -13,6 +13,7 @@ router.route('/:userId')
   .put(UserController.updateUser)
   .delete(UserController.deleteUser);
 
+// /api/users/:userId/friends/:friendId
 router.route('/:userId/friends/:friendId')
   .post(UserController.addFriend)
   .delete(UserController.deleteFriend)
